@@ -4,111 +4,111 @@ const icons = [
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'crow',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'dog',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },{
         name : 'dove',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'dragon',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color() ,
     },
     {
         name : 'horse',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'hippo',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'fish',
         prefix : 'fa-',
         type : 'animal',
         family : 'fas',
-        color : 'orange',
+        color : color(),
     },
     {
         name : 'carrot',
         prefix : 'fa-',
         type : 'vegetable',
         family : 'fas',
-        color : 'green',
+        color : color(),
     },
     {
         name : 'apple-alt',
         prefix : 'fa-',
         type : 'vegetable',
         family : 'fas',
-        color : 'green',
+        color : color(),
     },
     {
         name : 'lemon',
         prefix : 'fa-',
         type : 'vegetable',
         family : 'fas',
-        color : 'green',
+        color : color(),
     },
     {
         name : 'pepper-hot',
         prefix : 'fa-',
         type : 'vegetable',
         family : 'fas',
-        color : 'green',
+        color : color(),
     },
     {
         name : 'user-astronaut',
         prefix : 'fa-',
         type : 'user',
         family : 'fas',
-        color : 'blue',
+        color : color(),
     },
     {
         name : 'user-graduate',
         prefix : 'fa-',
         type : 'user',
         family : 'fas',
-        color : 'blue',
+        color : color(),
     },
     {
         name : 'user-ninja',
         prefix : 'fa-',
         type : 'user',
         family : 'fas',
-        color : 'blue',
+        color : color(),
     },
     {
         name : 'user-secret',
         prefix : 'fa-',
         type : 'user',
         family : 'fas',
-        color : 'blue',
+        color : color(),
     }
 ];
 
@@ -153,3 +153,62 @@ function drawIcons(container, icons) {
     container.innerHTML = content;
 
 }
+
+/* Funzione per aggiungere la lista di options dinamicamente */
+optionElements();
+
+function optionElements() {
+
+    let selectOptions = '<option value="all">All</option>';
+
+    /* Creo un array vuoto e aggiungo ad ogni elemento la proprietà "type" */
+    let select = []; 
+    icons.forEach(elemento => {
+        if (!select.includes(elemento.type)) {
+            select.push(elemento.type)
+        }
+    });
+        
+    /* Per ogni elemneto dell'array select inserisco un option con il value corrispondente  */
+    for (let i = 0; i < select.length; i++) {
+        selectOptions += `<option value="${select[i]}">${select[i]}</option>`
+    }
+
+    selector.innerHTML = selectOptions;
+}
+
+/* Funzione che genera un numero casuale tra un minimo e un massimo */
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+/* Funzione che genera un colore casuale per ogni oggetto dell'array icons */
+function color() {
+
+    let colorCode;
+    let hash = '#';
+
+    /* Ciclo dal quale genero 6 numeri e dove sostituisco i numeri generati casualmente con le lettere da A a F  */
+    for (let i = 0; i < 6; i++) {
+
+        let number = randomNumber(1, 15);
+        
+        if (number <= 9) {
+            colorCode = number
+        } else if (number == 10) {
+            colorCode = 'a'
+        } else if (number == 11) {
+            colorCode = 'b'
+        } else if (number == 12) {
+            colorCode = 'c'
+        } else if (number == 13) {
+            colorCode = 'd'
+        } else if (number == 14) {
+            colorCode = 'e'
+        } else if (number == 15) {
+            colorCode = 'f'
+        }
+        hash += colorCode;
+    }
+    return hash;
+};
